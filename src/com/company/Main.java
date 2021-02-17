@@ -44,5 +44,25 @@ public class Main {
         me.getCar().turnOn();
         System.out.println(me.mobile);
         me.mobile.turnOn();
+
+        Human czlowiek = new Human("Vladek", "Sumski");
+
+        System.out.println();
+        me.getCar().sell(me, czlowiek, 1000.0);
+        System.out.println(me.getCar() + " " + me.cash);
+        System.out.println(czlowiek.getCar() + " " + czlowiek.cash);
+
+        System.out.println();
+        me.mobile.sell(me, czlowiek, 100.0);
+        System.out.println(me.mobile + " " + me.cash);
+        System.out.println(czlowiek.mobile + " " + czlowiek.cash);
+
+        System.out.println();
+        me.pet.sell(me, czlowiek, 100.0);
+        System.out.println(me.pet + " " + me.cash);
+        System.out.println(czlowiek.pet + " " + czlowiek.cash);
+
+        Animal testowyZwierz =  new Animal("Dog");
+        testowyZwierz.sell(me, czlowiek, 100.);
     }
 }

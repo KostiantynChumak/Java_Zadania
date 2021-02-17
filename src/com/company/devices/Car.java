@@ -1,6 +1,7 @@
 package com.company.devices;
 
 import com.company.devices.Device;
+import com.company.Human;
 
 public class Car extends Device{
 
@@ -32,5 +33,17 @@ public class Car extends Device{
 
     public String getModel() {
         return model;
+    }
+    @Override
+    public void sell(Human seller, Human buyer, Double price) throws Exception {
+        if (buyer.couldBuy(this, price) && seller.hasDevice(this)) {
+            buyer.setCar(this);
+            seller.removeCar(this);
+            buyer.cash -= price;
+            seller.cash += price;
+            System.out.println("Tranzakcja udana.");
+        } else {
+            System.out.println("Tranzakcja nie powiodła się!");
+        }
     }
 }

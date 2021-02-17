@@ -1,6 +1,8 @@
 package com.company.creatures;
 
-public class Animal {
+import com.company.Salleable;
+
+public class Animal implements Salleable {
     final static Double DEFAULT_WEIGHT_DOG = 4.0;
     final static Double DEFAULT_WEIGHT_LION = 190.0;
     final static Double DEFAULT_WEIGHT_MOUSE = 0.01;
@@ -10,7 +12,7 @@ public class Animal {
     final String species;
     private Double weight;
 
-    public Animal(String species) throws Exception {
+    public Animal(String species)  {
         this.species = species;
 
         switch (this.species) {
@@ -23,7 +25,7 @@ public class Animal {
             case "Lion":
                 weight = DEFAULT_WEIGHT_LION;
             default:
-                throw new Exception("Undefined species!");
+                weight = 100.0;
         }
     }
 
@@ -57,5 +59,17 @@ public class Animal {
 
     public String toString() {
         return species + " " + name;
+    }
+    @Override
+    public void sell(Human seller, Human buyer, Double price) throws Exception {
+        if (buyer.couldBuy(this, price) && seller.hasAnimal(this)) {
+            buyer.pet = this;
+            seller.pet = null;
+            buyer.cash -= price;
+            seller.cash += price;
+            System.out.println("Tranzakcja udana.");
+        } else {
+            System.out.println("Tranzakcja nie powiodła się!");
+        }
     }
 }

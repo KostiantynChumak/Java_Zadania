@@ -6,6 +6,12 @@ import com.company.devices.Phone;
 import com.company.creatures.Animal;
 import com.company.creatures.FarmAnimal;
 import com.company.creatures.Pet;
+import com.company.devices.DieselCar;
+import com.company.devices.ElectricCar;
+import com.company.devices.LpgCar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -15,7 +21,7 @@ public class Main {
         me.lastName = "Chumak";
         me.pet = new Pet("Dog");
         me.pet.name = "Rex";
-        me.setCar(new Car("Mazda", "6"));
+        me.setCar(new ElectricCar("Mazda", "6"));
         System.out.println(me.getCar().getProducer() + " " + me.getCar().getModel());
         me.getLastSalaryCheckInfo();
         System.out.println("First salary check. Salary: " + me.getSalary());
@@ -30,8 +36,8 @@ public class Main {
         me.pet.takeForAWalk();
         me.pet.takeForAWalk();
 
-        Car car1 = new Car("BMW", "5");
-        Car car2 = new Car("BMW", "5");
+        Car car1 = new DieselCar("BMW", "5");
+        Car car2 = new DieselCar("BMW", "5");
         if (car1 == car2) {
             System.out.println("car1 i car2 są takie same");
         } else {
@@ -72,5 +78,23 @@ public class Main {
         pig.feed(100.0);
         pig.beEaten();
         pig.beEaten();
+
+        System.out.println();
+        czlowiek.mobile.installAnApp("Krzyk");
+        czlowiek.mobile.installAnApp("Krzyk", "testowa");
+        czlowiek.mobile.installAnApp("Krzyk", "dev", "najlepszeapki.pl");
+
+        System.out.println();
+        List<String> apki = new ArrayList<String>();
+        apki.add("FB");
+        apki.add("TW");
+        czlowiek.mobile.installAnApp(apki);
+
+        System.out.println();
+        URL testapp = new URL("Super apka 1", "fajna v1", "fajnyserwerek.pl");
+        czlowiek.mobile.installAnApp(testapp);
+
+        System.out.println();
+        me.getCar().refuel();
     }
 }

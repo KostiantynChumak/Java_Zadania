@@ -11,7 +11,7 @@ public class Human {
     public String lastName;
     protected Phone mobile;
     public Animal pet;
-    Car car;
+    private Car car;
 
     private Double salary = 4500.0;
     private Timestamp lastSalaryCheckTimestamp;
@@ -39,6 +39,21 @@ public class Human {
             System.out.println("Ostatnie sprawdzanie pensji: brak");
         }else{
             System.out.println("Ostatnie sprawdzanie pensji: " + lastSalaryCheckTimestamp + " Pensja: " + lastSalaryCheckValue);
+        }
+    }
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        if (car.value < salary) {
+            System.out.println("Kupiłeś samochód!");
+            this.car = car;
+        } else if (car.value / 12 < salary) {
+            System.out.println("Kupiłeś sachochód na kredyt.");
+            this.car = car;
+        } else {
+            System.out.println("Nie stać Cię!");
         }
     }
 }

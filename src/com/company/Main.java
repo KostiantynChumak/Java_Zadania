@@ -11,8 +11,8 @@ public class Main {
         me.lastName = "Chumak";
         me.pet = new Animal("Dog");
         me.pet.name = "Rex";
-        me.car = new Car("Mazda", "6");
-        System.out.println(me.car.producer + " " + me.car.model);
+        me.setCar(new Car("Mazda", "6"));
+        System.out.println(me.getCar().producer + " " + me.getCar().model);
         me.getLastSalaryCheckInfo();
         System.out.println("First salary check. Salary: " + me.getSalary());
         me.getLastSalaryCheckInfo();

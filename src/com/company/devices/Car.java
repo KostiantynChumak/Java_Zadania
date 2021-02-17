@@ -8,7 +8,7 @@ public abstract class Car extends Device{
     public Double value = 10000.0;
 
     public Car(String producer, String model) {
-        super(producer, model);
+        super(producer, model, 10000.0);
     }
 
     public String getPlates() {
@@ -35,8 +35,8 @@ public abstract class Car extends Device{
     }
 
     public void sell(Human seller, Human buyer, Double price) throws Exception {
-        if (buyer.couldBuy(price, this) && seller.hasDevice(this)) {
-            buyer.setCar(this);
+        if (buyer.couldBuy(this, price) && seller.hasDevice(this) && buyer.getNumberParkingFreeSpace() != null) {
+            buyer.setCar(buyer.getNumberParkingFreeSpace(), this);
             seller.removeCar(this);
             buyer.cash -= price;
             seller.cash += price;

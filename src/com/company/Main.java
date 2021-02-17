@@ -16,14 +16,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Human me = new Human();
-        me.firstName = "Kostiantyn";
-        me.lastName = "Chumak";
+        Human me = new Human("Kostiantyn", "Chumak", 1);
         me.pet = new Pet("Dog");
         me.pet.name = "Rex";
-        me.setCar(new ElectricCar("Mazda", "6"));
-        System.out.println(me.getCar().getProducer() + " " + me.getCar().getModel());
+        me.setCar(0,new ElectricCar("Mazda", "6"));
+        System.out.println(me.getCar(0).getProducer() + " " + me.getCar(0).getModel());
         me.getLastSalaryCheckInfo();
+        me.getCar(0).yearOfProduction = 2021;
         System.out.println("First salary check. Salary: " + me.getSalary());
         me.getLastSalaryCheckInfo();
         me.setSalary(5000.0);
@@ -37,7 +36,9 @@ public class Main {
         me.pet.takeForAWalk();
 
         Car car1 = new DieselCar("BMW", "5");
+        car1.yearOfProduction = 2000;
         Car car2 = new DieselCar("BMW", "5");
+        car1.yearOfProduction = 2002;
         if (car1 == car2) {
             System.out.println("car1 i car2 są takie same");
         } else {
@@ -49,17 +50,17 @@ public class Main {
 
         System.out.println(me);
         System.out.println(me.pet);
-        System.out.println(me.getCar());
-        me.getCar().turnOn();
+        System.out.println(me.getCar(0));
+        me.getCar(0).turnOn();
         System.out.println(me.mobile);
         me.mobile.turnOn();
 
         Human czlowiek = new Human("Vladek", "Sumski");
 
         System.out.println();
-        me.getCar().sell(me, czlowiek, 1000.0);
-        System.out.println(me.getCar() + " " + me.cash);
-        System.out.println(czlowiek.getCar() + " " + czlowiek.cash);
+        me.getCar(0).sell(me, czlowiek, 1000.0);
+        System.out.println(me.getCar(0) + " " + me.cash);
+        System.out.println(czlowiek.getCar(0) + " " + czlowiek.cash);
 
         System.out.println();
         me.mobile.sell(me, czlowiek, 100.0);
@@ -95,6 +96,30 @@ public class Main {
         czlowiek.mobile.installAnApp(testapp);
 
         System.out.println();
-        me.getCar().refuel();
+        me.getCar(0).refuel();
+
+        me.setCar(2, new DieselCar("Nissan", "GT"));
+        me.getCar(2).yearOfProduction = 2019;
+
+        System.out.println();
+        System.out.println(me.getTotalValueOfCars());
+
+        System.out.println("\nNieposortowane");
+        for (int i = 0; i < 3; i++) {
+            System.out.println(me.getCar(i));
+            if (me.getCar(i) != null) {
+                System.out.println("\t" + me.getCar(i).yearOfProduction);
+            }
+        }
+
+        me.sortMyCarsByYear();
+
+        System.out.println("\nPosortowane");
+        for (int i = 0; i < 3; i++) {
+            System.out.println(me.getCar(i));
+            if (me.getCar(i) != null) {
+                System.out.println("\t" + me.getCar(i).yearOfProduction);
+            }
+        }
     }
 }

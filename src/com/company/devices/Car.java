@@ -19,4 +19,15 @@ public class Car {
     public void setPlates(String plates) {
         this.plates = plates;
     }
+    public String toString() {
+        return producer + " " + model + " " + plates;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public String getModel() {
+        return model;
+    }
 }

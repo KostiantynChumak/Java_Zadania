@@ -56,4 +56,7 @@ public class Human {
             System.out.println("Nie stać Cię!");
         }
     }
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

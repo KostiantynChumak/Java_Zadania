@@ -1,9 +1,9 @@
 package com.company;
 
+import com.company.devices.Device;
 import com.company.devices.Phone;
 import com.company.creatures.Animal;
 import com.company.devices.Car;
-import com.company.Human;
 
 import java.sql.Timestamp;
 
@@ -14,8 +14,6 @@ public class Human extends Animal {
     public Animal pet;
     private Car car;
     public Double cash = 10000.0;
-    protected Phone mobile;
-
     private Double salary = 4500.0;
     private Timestamp lastSalaryCheckTimestamp;
     private Double lastSalaryCheckValue;
@@ -40,6 +38,11 @@ public class Human extends Animal {
             this.salary = salary;
         }
     }
+    public Double getSalary() {
+        lastSalaryCheckTimestamp = new Timestamp(System.currentTimeMillis());
+        lastSalaryCheckValue = salary;
+        return salary;
+    }
 
     public void getLastSalaryCheckInfo() {
         if (lastSalaryCheckValue == null) {
@@ -51,6 +54,10 @@ public class Human extends Animal {
     public Car getCar() {
         return car;
     }
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
 
     public void removeCar(Car car) throws Exception {
         boolean success = false;
@@ -72,14 +79,13 @@ public class Human extends Animal {
         return false;
     }
 
-    public String toString() {
-        return firstName + " " + lastName;
-    }
     public boolean hasAnimal(Animal animal) {
         return this.pet == animal;
     }
-
-    public boolean couldBuy(Device device, Double price) {
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+    public boolean couldBuy(Double price, Car device) {
         return price <= this.cash;
     }
 

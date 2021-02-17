@@ -19,7 +19,8 @@ public class Main {
         Human me = new Human("Kostiantyn", "Chumak", 1);
         me.pet = new Pet("Dog");
         me.pet.name = "Rex";
-        me.setCar(0,new ElectricCar("Mazda", "6"));
+        Car carMazda = new ElectricCar("Mazda", "6");
+        carMazda.buyAsNew(me);
         System.out.println(me.getCar(0).getProducer() + " " + me.getCar(0).getModel());
         me.getLastSalaryCheckInfo();
         me.getCar(0).yearOfProduction = 2021;
@@ -98,8 +99,11 @@ public class Main {
         System.out.println();
         me.getCar(0).refuel();
 
-        me.setCar(2, new DieselCar("Nissan", "GT"));
-        me.getCar(2).yearOfProduction = 2019;
+
+        me.cash = 100000.0;
+        Car carNissan = new DieselCar("Nissan", "GT");
+        carNissan.buyAsNew(me);
+        me.getCar(1).yearOfProduction = 2019;
 
         System.out.println();
         System.out.println(me.getTotalValueOfCars());
@@ -121,5 +125,15 @@ public class Main {
                 System.out.println("\t" + me.getCar(i).yearOfProduction);
             }
         }
+        System.out.println();
+        System.out.println("Czy: " + me + " był właścicielem tego pojazdu: " + me.getCar(0).wasOwner(me));
+
+        Human human1 = new Human("Vladek", "Sumski");
+        Car car = new DieselCar("Nissan", "GT");
+        car.buyAsNew(human1);
+        Human human2 = new Human("Vladek", "Sum");
+        human1.getCar(0).sell(human1, human2, 100.0);
+        System.out.println(human2.getCar(0).isExistTransactionBetween(human1, human2));
+        System.out.println(human1.getCar(0).getNumberOfTransactions());
     }
 }

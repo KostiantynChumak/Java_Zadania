@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.creatures.Animal;
+import com.company.devices.Car;
 
 public class Main {
 
@@ -10,6 +11,8 @@ public class Main {
         me.lastName = "Chumak";
         me.pet = new Animal("Dog");
         me.pet.name = "Rex";
+        me.car = new Car("Mazda", "6");
+        System.out.println(me.car.producer + " " + me.car.model);
 
         me.pet.takeForAWalk();
         me.pet.takeForAWalk();

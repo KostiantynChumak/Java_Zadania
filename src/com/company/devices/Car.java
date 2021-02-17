@@ -1,15 +1,14 @@
 package com.company.devices;
 
-public class Car {
-    public final String producer;
-    public final String model;
+import com.company.devices.Device;
+
+public class Car extends Device{
+
     private String plates;
     public Double value = 10000.0;
-    public Integer yearOfProduction;
 
     public Car(String producer, String model) {
-        this.producer = producer;
-        this.model = model;
+        super(producer, model);
     }
 
     public String getPlates() {
@@ -21,6 +20,10 @@ public class Car {
     }
     public String toString() {
         return producer + " " + model + " " + plates;
+    }
+    @Override
+    public void turnOn() {
+        System.out.println("Samochód " + this.producer + " " + this.model + " uruchomiony. Możesz jechać!");
     }
 
     public String getProducer() {
